@@ -1,7 +1,16 @@
 <?php
-
+/**
+ * 判断节点是否打开
+ * @param string $rule_val	权限节点
+ * @return boolean
+ */
 function isTurnOn($rule_val='')
 {
+	if(session('userinfo.administrator','','admin') == 1)
+	{
+		return true;
+	}
+	
 	return controller('Admin')->checkRule(session('userinfo.id','','admin'), $rule_val);
 }
 
